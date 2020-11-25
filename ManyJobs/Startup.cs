@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ManyJobs.Models;
+using ManyJobs.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +31,8 @@ namespace ManyJobs
             services.AddControllers();
             services.AddDbContext<ManyJobsContext>(options => options.UseSqlServer
            ("Connection2ManyJobsDB"));
+
+            services.AddScoped<IJobOfferRepository, JobOfferRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
