@@ -1,9 +1,9 @@
 ﻿
+
 namespace ManyJobs.DTOs
 {
-    public class JobSeekerDTO
+    public class JobSeekerUpdateDTO
     {
-        public int SeekerId { get; set; }
         public string SeekerName { get; set; }
         public string SeekerEmail { get; set; }
         public string SeekerMajor { get; set; }

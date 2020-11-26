@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
 using ManyJobs.DTOs;
 using ManyJobs.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ManyJobs.Mappings
 {
@@ -19,8 +15,11 @@ namespace ManyJobs.Mappings
             CreateMap<JobOffer, JobOfferUpdateDTO>();
 
             // Job Seeker Profile
-            CreateMap<JobSeeker, JobSeekerDTO>(); 
-           
+            CreateMap<JobSeeker, JobSeekerDTO>();
+            CreateMap<JobSeekerCreateDTO, JobSeeker>();
+            CreateMap<JobSeekerUpdateDTO, JobSeeker>();
+            CreateMap<JobSeeker, JobSeekerUpdateDTO>();
+
         }
     }
 }

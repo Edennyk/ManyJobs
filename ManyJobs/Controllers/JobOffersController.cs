@@ -1,13 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using ManyJobs.Models;
 using AutoMapper;
 using ManyJobs.DTOs;
 using ManyJobs.Services;
-using Microsoft.AspNetCore.Authorization;
+
 
 namespace ManyJobs.Controllers
 {
@@ -100,109 +97,5 @@ namespace ManyJobs.Controllers
             return NoContent();
         }
 
-       
-
-      //=============================================================
-        /*private IJobOfferRepository _jobOfferRepository;
-        //private readonly ManyJobsContext _context;
-        private readonly IMapper _mapper;
-
-        public JobOffersController(ManyJobsContext context, IMapper mapper, IJobOfferRepository jobOfferRepository)
-        {
-          //  _context = context;
-            _mapper = mapper;
-            _jobOfferRepository = jobOfferRepository;
-        }
-
-        // GET: api/JobOffers
-        [HttpGet]
-        [Route("/api/getoffers")]
-        public async Task<ActionResult<IEnumerable<JobOffer>>> GetJobOffer()
-        {
-            return await _context.JobOffer.ToListAsync();
-        }
-
-        // GET: api/JobOffers/5
-        [HttpGet]
-        [Route("/api/getoffers/{id}")]
-        public async Task<ActionResult<JobOffer>> GetJobOffer(int id)
-        {
-            var jobOffer = await _context.JobOffer.FindAsync(id);
-
-            if (jobOffer == null)
-            {
-                return NotFound();
-            }
-
-            return jobOffer;
-        }
-
-        // PUT: api/JobOffers/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutJobOffer(int id, JobOffer jobOffer)
-        {
-            if (id != jobOffer.JobId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(jobOffer).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!JobOfferExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/JobOffers
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public async Task<ActionResult<JobOffer>> PostJobOffer(JobOffer jobOffer)
-        {
-            var jobOffers = await _context..JobOffer.Add(jobOffer);
-            var jobOfferMapped = _mapper.Map<JobOfferDTO>(jobOffers);
-            return Ok(jobOfferMapped);
-            *//*_context.JobOffer.Add(jobOffer);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetJobOffer", new { id = jobOffer.JobId }, jobOffer);*//*
-        }
-
-        // DELETE: api/JobOffers/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<JobOffer>> DeleteJobOffer(int id)
-        {
-            var jobOffer = await _context.JobOffer.FindAsync(id);
-            if (jobOffer == null)
-            {
-                return NotFound();
-            }
-
-            _context.JobOffer.Remove(jobOffer);
-            await _context.SaveChangesAsync();
-
-            return jobOffer;
-        }
-
-        private bool JobOfferExists(int id)
-        {
-            return _context.JobOffer.Any(e => e.JobId == id);
-        }*/
     }
 }

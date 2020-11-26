@@ -1,86 +1,59 @@
 ﻿using ManyJobs.Models;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace ManyJobs.Services
 {
     public class JobSeekerRepository : IJobSeekerRepository
     {
-        private readonly ManyJobsContext manyJobsContext;
+        private readonly ManyJobsContext _context;
 
-        public JobSeekerRepository(ManyJobsContext manyJobsContext)
+        public JobSeekerRepository(ManyJobsContext context)
         {
-            this.manyJobsContext = manyJobsContext;
+            _context = context;
         }
 
-        public async Task<IEnumerable<JobSeeker>> GetJobSeekers()
+        // All data of JobSeeker
+        public IEnumerable<JobSeeker> GetAllJobSeekers()
         {
-            return await manyJobsContext.JobSeeker.ToListAsync();
+            return _context.JobSeeker.ToList();
         }
 
-        public async Task<JobSeeker> GetJobSeeker(int SeekerId)
+        // Get data by JobSeeker ID
+        public JobSeeker GetJobSeekerById(int id)
         {
-            return await manyJobsContext.JobSeeker
-                .FirstOrDefaultAsync(e => e.SeekerId == SeekerId);
+            return _context.JobSeeker.FirstOrDefault(p => p.SeekerId == id);
         }
 
-        public async Task<JobSeeker> AddJobSeeker(JobSeeker JobSeeker)
+        // POST 
+        public void CreateJobSeeker(JobSeeker jobSeeker)
         {
-            var result = await manyJobsContext.JobSeeker.AddAsync(JobSeeker);
-            await manyJobsContext.SaveChangesAsync();
-            return result.Entity;
-        }
-
-        public async Task<JobSeeker> UpdateJobSeeker(JobSeeker JobSeeker)
-        {
-            var result = await manyJobsContext.JobSeeker
-                .FirstOrDefaultAsync(e => e.SeekerId == JobSeeker.SeekerId);
-
-            if (result != null)
+            if (jobSeeker == null)
             {
-                result.SeekerId = JobSeeker.SeekerId;
-                result.SeekerName = JobSeeker.SeekerName;
-                result.SeekerEmail = JobSeeker.SeekerEmail;
-                result.SeekerMajor = JobSeeker.SeekerMajor;
-                result.Skill = JobSeeker.Skill;
-                result.SeekerCity = JobSeeker.SeekerCity;
-                result.SeekerCountry = JobSeeker.SeekerCountry;
-
-                await manyJobsContext.SaveChangesAsync();
-
-                return result;
+                throw new ArgumentNullException(nameof(jobSeeker));
             }
-
-            return null;
+            _context.JobSeeker.Add(jobSeeker);
         }
 
-        public async void DeleteJobSeeker(int SeekerId)
+        //PUT
+        void IJobSeekerRepository.UpdateJobSeeker(JobSeeker jobSeeker) { }
+       
+
+        //DELETE
+        public void DeleteJobSeeker(JobSeeker jobSeeker)
         {
-            var result = await manyJobsContext.JobSeeker
-                .FirstOrDefaultAsync(e => e.SeekerId == SeekerId);
-            if (result != null)
+            if (jobSeeker == null)
             {
-                manyJobsContext.JobSeeker.Remove(result);
-                await manyJobsContext.SaveChangesAsync();
+                throw new ArgumentNullException(nameof(jobSeeker));
             }
+            _context.JobSeeker.Remove(jobSeeker);
         }
 
-        Task<JobSeeker> IJobSeekerRepository.GetEmployee(int SeekerId)
+        public bool SaveChanges()
         {
-            throw new NotImplementedException();
+            return (_context.SaveChanges() >= 0);
         }
 
-        Task<JobSeeker> IJobSeekerRepository.AddEmployee(JobSeeker jobSeeker)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<JobSeeker> IJobSeekerRepository.UpdateEmployee(JobSeeker jobSeeker)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

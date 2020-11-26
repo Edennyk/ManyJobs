@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ManyJobs.Models;
+using ManyJobs.DTOs;
+using ManyJobs.Services;
+using AutoMapper;
+
 
 namespace ManyJobs.Controllers
 {
@@ -13,99 +15,88 @@ namespace ManyJobs.Controllers
     [ApiController]
     public class JobSeekersController : ControllerBase
     {
-        private readonly ManyJobsContext _context;
+        private IJobSeekerRepository _jobSeekerRepository;
+        private readonly IMapper _mapper;
 
-        public JobSeekersController(ManyJobsContext context)
+        public JobSeekersController(IJobSeekerRepository jobSeekerRepository, IMapper mapper)
         {
-            _context = context;
+            _jobSeekerRepository = jobSeekerRepository;
+            _mapper = mapper;
         }
 
-        // GET: api/JobSeekers
+        // GET: api/JobSeekers (get all)
         [HttpGet]
         [Route("/api/getseekers")]
-        public async Task<ActionResult<IEnumerable<JobSeeker>>> GetJobSeeker()
+        public ActionResult<IEnumerable<JobSeekerDTO>> GetAllJobSeekers()
         {
-            return await _context.JobSeeker.ToListAsync();
+            var jobSeekerItems = _jobSeekerRepository.GetAllJobSeekers();
+            var result = _mapper.Map<IEnumerable<JobSeekerDTO>>(jobSeekerItems);
+            return Ok(result);
         }
 
-        // GET: api/JobSeekers/5
-        [HttpGet("{id}")]
-        [Route("/api/getseekers/{id}")]
-        public async Task<ActionResult<JobSeeker>> GetJobSeeker(int id)
+        // GET: api/JobSeeker/5 (get by id)
+        //[Authorize]
+        [HttpGet]
+        [Route("{id}", Name = "GetJobSeekerById")]
+        public ActionResult<JobSeekerDTO> GetJobSeekerById(int id)
         {
-            var jobSeeker = await _context.JobSeeker.FindAsync(id);
+            var jobSeekerItems = _jobSeekerRepository.GetJobSeekerById(id);
 
-            if (jobSeeker == null)
+            if (jobSeekerItems == null)
+            {
+                return NotFound();
+            }
+            var result = _mapper.Map<JobSeekerDTO>(jobSeekerItems);
+            return Ok(result);
+        }
+
+        // POST: api/JobSeekers
+        [HttpPost]
+        public ActionResult<JobSeekerDTO> CreateJobSeeker(JobSeekerCreateDTO jobSeekerCreateDto)
+        {
+            var jobSeekerModel = _mapper.Map<JobSeeker>(jobSeekerCreateDto);
+            _jobSeekerRepository.CreateJobSeeker(jobSeekerModel);
+            _jobSeekerRepository.SaveChanges();
+
+            var jobSeekerDto = _mapper.Map<JobSeekerDTO>(jobSeekerModel);
+
+            //return Ok(JobSeekerDTO);
+            return CreatedAtRoute(nameof(GetJobSeekerById), new { Id = jobSeekerDto.SeekerId }, jobSeekerDto);
+        }
+
+        // PUT: api/JobSeekers/{id}
+        [HttpPut("{id}")]
+        public ActionResult UpdateJobSeeker(int id, JobSeekerUpdateDTO jobSeekerUpdateDto)
+        {
+            var jobSeekerModelFromRepo = _jobSeekerRepository.GetJobSeekerById(id);
+            if (jobSeekerModelFromRepo == null)
             {
                 return NotFound();
             }
 
-            return jobSeeker;
-        }
-
-        // PUT: api/JobSeekers/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutJobSeeker(int id, JobSeeker jobSeeker)
-        {
-            if (id != jobSeeker.SeekerId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(jobSeeker).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!JobSeekerExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            _mapper.Map(jobSeekerUpdateDto, jobSeekerModelFromRepo);
+            _jobSeekerRepository.UpdateJobSeeker(jobSeekerModelFromRepo);
+            _jobSeekerRepository.SaveChanges();
 
             return NoContent();
         }
 
-        // POST: api/JobSeekers
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public async Task<ActionResult<JobSeeker>> PostJobSeeker(JobSeeker jobSeeker)
-        {
-            _context.JobSeeker.Add(jobSeeker);
-            await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetJobSeeker", new { id = jobSeeker.SeekerId }, jobSeeker);
-        }
-
-        // DELETE: api/JobSeekers/5
+        // DELETE: api/JobSeekers/{id}
         [HttpDelete("{id}")]
-        public async Task<ActionResult<JobSeeker>> DeleteJobSeeker(int id)
+        public ActionResult DeleteJobSeeker(int id)
         {
-            var jobSeeker = await _context.JobSeeker.FindAsync(id);
-            if (jobSeeker == null)
+            var jobSeekerModelFromRepo = _jobSeekerRepository.GetJobSeekerById(id);
+            if (jobSeekerModelFromRepo == null)
             {
                 return NotFound();
             }
 
-            _context.JobSeeker.Remove(jobSeeker);
-            await _context.SaveChangesAsync();
+            _jobSeekerRepository.DeleteJobSeeker(jobSeekerModelFromRepo);
+            _jobSeekerRepository.SaveChanges();
 
-            return jobSeeker;
+            return NoContent();
         }
 
-        private bool JobSeekerExists(int id)
-        {
-            return _context.JobSeeker.Any(e => e.SeekerId == id);
-        }
     }
 }
