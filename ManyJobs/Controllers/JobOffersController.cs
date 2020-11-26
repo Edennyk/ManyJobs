@@ -62,7 +62,7 @@ namespace ManyJobs.Controllers
             var jobOfferDto = _mapper.Map<JobOfferDTO>(jobOfferModel);
 
             //return Ok(JobOfferDTO);
-            return CreatedAtRoute(nameof(GetJobOfferById), new { JobId = jobOfferDto.JobId },jobOfferDto);
+            return CreatedAtRoute(nameof(GetJobOfferById), new { Id = jobOfferDto.JobId },jobOfferDto);
         }
 
 
