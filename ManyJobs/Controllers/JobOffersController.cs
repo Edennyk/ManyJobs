@@ -38,7 +38,7 @@ namespace ManyJobs.Controllers
        // GET: api/JobOffers/5 (get by id)
         //[Authorize]
         [HttpGet]
-        [Route("{id}")]
+        [Route("{id}", Name = "GetJobOfferById")]
         public ActionResult <JobOfferDTO> GetJobOfferById(int id)
         {    
             var jobOfferItems = _jobOfferRepository.GetJobOfferById(id);
@@ -61,6 +61,7 @@ namespace ManyJobs.Controllers
 
             var jobOfferDto = _mapper.Map<JobOfferDTO>(jobOfferModel);
 
+            //return Ok(JobOfferDTO);
             return CreatedAtRoute(nameof(GetJobOfferById), new { JobId = jobOfferDto.JobId },jobOfferDto);
         }
 
