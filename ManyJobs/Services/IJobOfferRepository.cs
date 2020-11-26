@@ -8,10 +8,12 @@ namespace ManyJobs.Services
 {
     public interface IJobOfferRepository
     {
-        Task<IEnumerable<JobOffer>> GetJobOffers();
-        Task<JobOffer> GetJobOffer(int JobId);
-        Task<JobOffer> AddJobOffer(JobOffer jobOffer);
-        Task<JobOffer> UpdateJobOffer(JobOffer jobOffer);
-        void DeleteJobOffer(int JobId);
+        bool SaveChanges();
+        IEnumerable<JobOffer> GetAllJobOffers();
+        JobOffer GetJobOfferById(int JobId);
+        void CreateJobOffer(JobOffer jobOffer); //POST
+        void UpdateJobOffer(JobOffer jobOffer); //PUT
+        void DeleteJobOffer(JobOffer jobOffer);
+
     }
 }

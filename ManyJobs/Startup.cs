@@ -30,13 +30,16 @@ namespace ManyJobs
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
             services.AddDbContext<ManyJobsContext>(options => options.UseSqlServer
-           ("Connection2ManyJobsDB"));
+           (Configuration.GetConnectionString("Connection2ManyJobsDB")));
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddScoped<IJobOfferRepository, JobOfferRepository>();
             services.AddScoped<IJobSeekerRepository, JobSeekerRepository>();
 
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

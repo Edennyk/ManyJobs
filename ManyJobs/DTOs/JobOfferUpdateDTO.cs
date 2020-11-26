@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace ManyJobs.DTOs
 {
-    public class JobOfferDTO
+    public class JobOfferUpdateDTO
     {
-        public int JobId { get; set; }
         public string JobName { get; set; }
         public string JobTitle { get; set; }
         public string JobExperience { get; set; }

@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ManyJobs.Models;
+using AutoMapper;
+using ManyJobs.DTOs;
+using ManyJobs.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ManyJobs.Controllers
 {
@@ -13,11 +15,102 @@ namespace ManyJobs.Controllers
     [ApiController]
     public class JobOffersController : ControllerBase
     {
-        private readonly ManyJobsContext _context;
 
-        public JobOffersController(ManyJobsContext context)
+        private IJobOfferRepository _jobOfferRepository;
+        private readonly IMapper _mapper;
+
+        public JobOffersController(IJobOfferRepository jobOfferRepository, IMapper mapper)
         {
-            _context = context;
+            _jobOfferRepository = jobOfferRepository;
+            _mapper = mapper;
+        }
+
+        // GET: api/JobOffers (get all)
+        [HttpGet]
+        [Route("/api/getoffers")]
+        public ActionResult<IEnumerable<JobOfferDTO>> GetAllJobOffers()
+        {
+            var jobOfferItems = _jobOfferRepository.GetAllJobOffers();
+            var result = _mapper.Map<IEnumerable<JobOfferDTO>>(jobOfferItems);
+            return Ok(result);
+        }
+
+       // GET: api/JobOffers/5 (get by id)
+        //[Authorize]
+        [HttpGet]
+        [Route("{id}")]
+        public ActionResult <JobOfferDTO> GetJobOfferById(int id)
+        {    
+            var jobOfferItems = _jobOfferRepository.GetJobOfferById(id);
+
+            if (jobOfferItems == null)
+            {
+                return NotFound();
+            }
+             var result = _mapper.Map<JobOfferDTO>(jobOfferItems);
+             return Ok(result);
+        }
+
+        // POST: api/JobOffers
+        [HttpPost]
+        public ActionResult<JobOfferDTO> CreateJobOffer (JobOfferCreateDTO jobOfferCreateDto)
+        {
+            var jobOfferModel = _mapper.Map<JobOffer>(jobOfferCreateDto);
+            _jobOfferRepository.CreateJobOffer(jobOfferModel);
+            _jobOfferRepository.SaveChanges();
+
+            var jobOfferDto = _mapper.Map<JobOfferDTO>(jobOfferModel);
+
+            return CreatedAtRoute(nameof(GetJobOfferById), new { JobId = jobOfferDto.JobId },jobOfferDto);
+        }
+
+
+        // PUT: api/JobOffers/{id}
+        [HttpPut("{id}")]
+        public ActionResult UpdateJobOffer(int id, JobOfferUpdateDTO jobOfferUpdateDto)
+        {
+            var jobOfferModelFromRepo = _jobOfferRepository.GetJobOfferById(id);
+            if(jobOfferModelFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(jobOfferUpdateDto, jobOfferModelFromRepo);
+            _jobOfferRepository.UpdateJobOffer(jobOfferModelFromRepo);
+            _jobOfferRepository.SaveChanges();
+
+            return NoContent();
+        }
+
+
+        // DELETE: api/JobOffers/{id}
+        [HttpDelete("{id}")]
+        public ActionResult DeleteJobOffer(int id)
+        {
+            var jobOfferModelFromRepo = _jobOfferRepository.GetJobOfferById(id);
+            if (jobOfferModelFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            _jobOfferRepository.DeleteJobOffer(jobOfferModelFromRepo);
+            _jobOfferRepository.SaveChanges();
+
+            return NoContent();
+        }
+
+       
+
+      //=============================================================
+        /*private IJobOfferRepository _jobOfferRepository;
+        //private readonly ManyJobsContext _context;
+        private readonly IMapper _mapper;
+
+        public JobOffersController(ManyJobsContext context, IMapper mapper, IJobOfferRepository jobOfferRepository)
+        {
+          //  _context = context;
+            _mapper = mapper;
+            _jobOfferRepository = jobOfferRepository;
         }
 
         // GET: api/JobOffers
@@ -81,10 +174,13 @@ namespace ManyJobs.Controllers
         [HttpPost]
         public async Task<ActionResult<JobOffer>> PostJobOffer(JobOffer jobOffer)
         {
-            _context.JobOffer.Add(jobOffer);
+            var jobOffers = await _context..JobOffer.Add(jobOffer);
+            var jobOfferMapped = _mapper.Map<JobOfferDTO>(jobOffers);
+            return Ok(jobOfferMapped);
+            *//*_context.JobOffer.Add(jobOffer);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetJobOffer", new { id = jobOffer.JobId }, jobOffer);
+            return CreatedAtAction("GetJobOffer", new { id = jobOffer.JobId }, jobOffer);*//*
         }
 
         // DELETE: api/JobOffers/5
@@ -106,6 +202,6 @@ namespace ManyJobs.Controllers
         private bool JobOfferExists(int id)
         {
             return _context.JobOffer.Any(e => e.JobId == id);
-        }
+        }*/
     }
 }

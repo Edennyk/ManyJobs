@@ -12,8 +12,15 @@ namespace ManyJobs.Mappings
     {
         public MappingProfile()
         {
-            CreateMap<JobSeeker, JobSeekerDto>(); //Map from Developer Object to DeveloperDTO Object
-            CreateMap<JobOffer, JobOfferDto>();
+            // Job Offer Profile
+            CreateMap<JobOffer, JobOfferDTO>(); // Read All 
+            CreateMap<JobOfferCreateDTO, JobOffer>();
+            CreateMap<JobOfferUpdateDTO, JobOffer>();
+            CreateMap<JobOffer, JobOfferUpdateDTO>();
+
+            // Job Seeker Profile
+            CreateMap<JobSeeker, JobSeekerDTO>(); 
+           
         }
     }
 }
