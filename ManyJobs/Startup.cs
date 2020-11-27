@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using Microsoft.OpenApi.Models;
 
 namespace ManyJobs
 {
@@ -34,7 +34,10 @@ namespace ManyJobs
             services.AddScoped<IJobOfferRepository, JobOfferRepository>();
             services.AddScoped<IJobSeekerRepository, JobSeekerRepository>();
 
-            
+            services.AddMvcCore().AddApiExplorer();
+
+            services.AddSwaggerGen();
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "ManyJobs API", Version = "v1" }); });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +47,11 @@ namespace ManyJobs
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Many Jobs V1"); });
+
 
             app.UseHttpsRedirection();
 
