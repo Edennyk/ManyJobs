@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using ManyJobs.Models;
 using ManyJobs.DTOs;
 using ManyJobs.Services;
@@ -26,6 +23,7 @@ namespace ManyJobs.Controllers
 
         // GET: api/JobSeekers (get all)
         [HttpGet]
+        //[Route("/api/getseekers")]
         public ActionResult<IEnumerable<JobSeekerDTO>> GetAllJobSeekers()
         {
             var jobSeekerItems = _jobSeekerRepository.GetAllJobSeekers();
