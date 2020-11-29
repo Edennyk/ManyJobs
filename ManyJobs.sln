@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManyJobs", "ManyJobs\ManyJobs.csproj", "{72D26087-1AD4-4EEE-945C-F266C68B69A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManyJobs", "ManyJobs\ManyJobs.csproj", "{72D26087-1AD4-4EEE-945C-F266C68B69A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManyJobsClient", "ManyJobsClient\ManyJobsClient.csproj", "{EFB43774-8365-41CB-A391-E44DC7853348}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{72D26087-1AD4-4EEE-945C-F266C68B69A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72D26087-1AD4-4EEE-945C-F266C68B69A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72D26087-1AD4-4EEE-945C-F266C68B69A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFB43774-8365-41CB-A391-E44DC7853348}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFB43774-8365-41CB-A391-E44DC7853348}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFB43774-8365-41CB-A391-E44DC7853348}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFB43774-8365-41CB-A391-E44DC7853348}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

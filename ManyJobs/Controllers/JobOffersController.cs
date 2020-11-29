@@ -23,8 +23,7 @@ namespace ManyJobs.Controllers
         }
 
         // GET: api/JobOffers (get all)
-        [HttpGet]
-       // [Route("/api/getoffers")]
+        [HttpGet("/api/joboffers.{format}"), FormatFilter]
         public ActionResult<IEnumerable<JobOfferDTO>> GetAllJobOffers()
         {
             var jobOfferItems = _jobOfferRepository.GetAllJobOffers();

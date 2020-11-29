@@ -4,11 +4,12 @@ using ManyJobs.Models;
 using ManyJobs.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace ManyJobs
@@ -27,8 +28,21 @@ namespace ManyJobs
         {
             services.AddControllers();
 
-            services.AddDbContext<ManyJobsContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Connection2ManyJobsDB")));
+            services.AddControllers(o =>
+            {
+                o.FormatterMappings.SetMediaTypeMappingForFormat("xml", "application/xml");
+                o.FormatterMappings.SetMediaTypeMappingForFormat("js", "application/json");
 
+            }).AddXmlSerializerFormatters();
+
+            // paraeter store 
+            /*var bulider = new SqlConnectionStringBuilder(Configuration.GetConnectionString("Connection2ManyJobsDB"));
+            bulider.UserID = Configuration["Dbuser"];
+            bulider.Password = Configuration["DbPassword"];
+            var connection = bulider.ConnectionString;
+            services.AddDbContext<ManyJobsContext>(options => options.UseSqlServer(connection));*/
+
+            services.AddDbContext<ManyJobsContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Connection2ManyJobsDB")));
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -48,6 +62,10 @@ namespace ManyJobs
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Many Jobs V1"); });
 
             app.UseHttpsRedirection();
 
