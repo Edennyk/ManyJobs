@@ -30,13 +30,17 @@
         {
             this.label_title = new System.Windows.Forms.Label();
             this.group_joboffer = new System.Windows.Forms.GroupBox();
+            this.txt_idOffer = new System.Windows.Forms.TextBox();
+            this.btn_delete = new System.Windows.Forms.Button();
+            this.btn_searchOffer = new System.Windows.Forms.Button();
+            this.btn_edit = new System.Windows.Forms.Button();
             this.btn_savejob = new System.Windows.Forms.Button();
-            this.textBox_salary = new System.Windows.Forms.TextBox();
-            this.textBox_address = new System.Windows.Forms.TextBox();
-            this.textBox_jobSkill = new System.Windows.Forms.TextBox();
-            this.textBox_exp = new System.Windows.Forms.TextBox();
-            this.textBox_jobtitle = new System.Windows.Forms.TextBox();
-            this.textBox_jobname = new System.Windows.Forms.TextBox();
+            this.txt_salary = new System.Windows.Forms.TextBox();
+            this.txt_address = new System.Windows.Forms.TextBox();
+            this.txt_jobSkill = new System.Windows.Forms.TextBox();
+            this.txt_Exp = new System.Windows.Forms.TextBox();
+            this.txt_jobTitle = new System.Windows.Forms.TextBox();
+            this.txt_jobName = new System.Windows.Forms.TextBox();
             this.label_salary = new System.Windows.Forms.Label();
             this.label_address = new System.Windows.Forms.Label();
             this.label_jobSkill = new System.Windows.Forms.Label();
@@ -44,21 +48,26 @@
             this.label_jobtitle = new System.Windows.Forms.Label();
             this.label_jobname = new System.Windows.Forms.Label();
             this.group_seeker = new System.Windows.Forms.GroupBox();
-            this.textBox_country = new System.Windows.Forms.TextBox();
-            this.textBox_city = new System.Windows.Forms.TextBox();
-            this.textBox_seekerSkill = new System.Windows.Forms.TextBox();
-            this.textBox_major = new System.Windows.Forms.TextBox();
-            this.textBox_email = new System.Windows.Forms.TextBox();
-            this.textBox_seekername = new System.Windows.Forms.TextBox();
+            this.btn_searchJS = new System.Windows.Forms.Button();
+            this.txt_idSeeker = new System.Windows.Forms.TextBox();
+            this.btn_deletejs = new System.Windows.Forms.Button();
+            this.btn_editjs = new System.Windows.Forms.Button();
+            this.btn_saveseeker = new System.Windows.Forms.Button();
+            this.txt_country = new System.Windows.Forms.TextBox();
+            this.txt_city = new System.Windows.Forms.TextBox();
+            this.txt_seekerSkill = new System.Windows.Forms.TextBox();
+            this.txt_major = new System.Windows.Forms.TextBox();
+            this.txt_email = new System.Windows.Forms.TextBox();
+            this.txt_seekername = new System.Windows.Forms.TextBox();
             this.label_country = new System.Windows.Forms.Label();
             this.label_city = new System.Windows.Forms.Label();
             this.label_seekerSkill = new System.Windows.Forms.Label();
             this.label_major = new System.Windows.Forms.Label();
             this.label_email = new System.Windows.Forms.Label();
             this.label_seekername = new System.Windows.Forms.Label();
-            this.btn_saveseeker = new System.Windows.Forms.Button();
-            this.btn_all = new System.Windows.Forms.Button();
-            this.btn_search = new System.Windows.Forms.Button();
+            this.btn_GetAllJO = new System.Windows.Forms.Button();
+            this.txtResponse = new System.Windows.Forms.TextBox();
+            this.btn_GetAllJS = new System.Windows.Forms.Button();
             this.group_joboffer.SuspendLayout();
             this.group_seeker.SuspendLayout();
             this.SuspendLayout();
@@ -69,82 +78,124 @@
             this.label_title.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label_title.Location = new System.Drawing.Point(451, 22);
             this.label_title.Name = "label_title";
-            this.label_title.Size = new System.Drawing.Size(149, 35);
+            this.label_title.Size = new System.Drawing.Size(239, 35);
             this.label_title.TabIndex = 0;
-            this.label_title.Text = "Manage API";
+            this.label_title.Text = "ManyJobs Client API";
             // 
             // group_joboffer
             // 
+            this.group_joboffer.Controls.Add(this.txt_idOffer);
+            this.group_joboffer.Controls.Add(this.btn_delete);
+            this.group_joboffer.Controls.Add(this.btn_searchOffer);
+            this.group_joboffer.Controls.Add(this.btn_edit);
             this.group_joboffer.Controls.Add(this.btn_savejob);
-            this.group_joboffer.Controls.Add(this.textBox_salary);
-            this.group_joboffer.Controls.Add(this.textBox_address);
-            this.group_joboffer.Controls.Add(this.textBox_jobSkill);
-            this.group_joboffer.Controls.Add(this.textBox_exp);
-            this.group_joboffer.Controls.Add(this.textBox_jobtitle);
-            this.group_joboffer.Controls.Add(this.textBox_jobname);
+            this.group_joboffer.Controls.Add(this.txt_salary);
+            this.group_joboffer.Controls.Add(this.txt_address);
+            this.group_joboffer.Controls.Add(this.txt_jobSkill);
+            this.group_joboffer.Controls.Add(this.txt_Exp);
+            this.group_joboffer.Controls.Add(this.txt_jobTitle);
+            this.group_joboffer.Controls.Add(this.txt_jobName);
             this.group_joboffer.Controls.Add(this.label_salary);
             this.group_joboffer.Controls.Add(this.label_address);
             this.group_joboffer.Controls.Add(this.label_jobSkill);
             this.group_joboffer.Controls.Add(this.label_exp);
             this.group_joboffer.Controls.Add(this.label_jobtitle);
             this.group_joboffer.Controls.Add(this.label_jobname);
-            this.group_joboffer.Location = new System.Drawing.Point(471, 83);
+            this.group_joboffer.Location = new System.Drawing.Point(556, 78);
             this.group_joboffer.Name = "group_joboffer";
-            this.group_joboffer.Size = new System.Drawing.Size(303, 398);
+            this.group_joboffer.Size = new System.Drawing.Size(303, 452);
             this.group_joboffer.TabIndex = 1;
             this.group_joboffer.TabStop = false;
             this.group_joboffer.Text = "JOB";
             // 
+            // txt_idOffer
+            // 
+            this.txt_idOffer.Location = new System.Drawing.Point(13, 401);
+            this.txt_idOffer.Name = "txt_idOffer";
+            this.txt_idOffer.Size = new System.Drawing.Size(93, 27);
+            this.txt_idOffer.TabIndex = 1;
+            // 
+            // btn_delete
+            // 
+            this.btn_delete.Location = new System.Drawing.Point(201, 350);
+            this.btn_delete.Name = "btn_delete";
+            this.btn_delete.Size = new System.Drawing.Size(68, 30);
+            this.btn_delete.TabIndex = 4;
+            this.btn_delete.Text = "Delete";
+            this.btn_delete.UseVisualStyleBackColor = true;
+            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
+            // 
+            // btn_searchOffer
+            // 
+            this.btn_searchOffer.Location = new System.Drawing.Point(131, 400);
+            this.btn_searchOffer.Name = "btn_searchOffer";
+            this.btn_searchOffer.Size = new System.Drawing.Size(138, 29);
+            this.btn_searchOffer.TabIndex = 4;
+            this.btn_searchOffer.Text = "Search by ID";
+            this.btn_searchOffer.UseVisualStyleBackColor = true;
+            this.btn_searchOffer.Click += new System.EventHandler(this.btn_searchOffer_Click);
+            // 
+            // btn_edit
+            // 
+            this.btn_edit.Location = new System.Drawing.Point(13, 351);
+            this.btn_edit.Name = "btn_edit";
+            this.btn_edit.Size = new System.Drawing.Size(80, 29);
+            this.btn_edit.TabIndex = 3;
+            this.btn_edit.Text = "Edit";
+            this.btn_edit.UseVisualStyleBackColor = true;
+            this.btn_edit.Click += new System.EventHandler(this.btn_edit_Click);
+            // 
             // btn_savejob
             // 
-            this.btn_savejob.Location = new System.Drawing.Point(109, 352);
+            this.btn_savejob.Location = new System.Drawing.Point(108, 350);
             this.btn_savejob.Name = "btn_savejob";
-            this.btn_savejob.Size = new System.Drawing.Size(94, 29);
+            this.btn_savejob.Size = new System.Drawing.Size(72, 29);
             this.btn_savejob.TabIndex = 2;
             this.btn_savejob.Text = "Save";
             this.btn_savejob.UseVisualStyleBackColor = true;
+            this.btn_savejob.Click += new System.EventHandler(this.btn_savejob_Click);
             // 
-            // textBox_salary
+            // txt_salary
             // 
-            this.textBox_salary.Location = new System.Drawing.Point(118, 300);
-            this.textBox_salary.Name = "textBox_salary";
-            this.textBox_salary.Size = new System.Drawing.Size(161, 27);
-            this.textBox_salary.TabIndex = 1;
+            this.txt_salary.Location = new System.Drawing.Point(118, 300);
+            this.txt_salary.Name = "txt_salary";
+            this.txt_salary.Size = new System.Drawing.Size(161, 27);
+            this.txt_salary.TabIndex = 1;
             // 
-            // textBox_address
+            // txt_address
             // 
-            this.textBox_address.Location = new System.Drawing.Point(118, 254);
-            this.textBox_address.Name = "textBox_address";
-            this.textBox_address.Size = new System.Drawing.Size(161, 27);
-            this.textBox_address.TabIndex = 1;
+            this.txt_address.Location = new System.Drawing.Point(118, 254);
+            this.txt_address.Name = "txt_address";
+            this.txt_address.Size = new System.Drawing.Size(161, 27);
+            this.txt_address.TabIndex = 1;
             // 
-            // textBox_jobSkill
+            // txt_jobSkill
             // 
-            this.textBox_jobSkill.Location = new System.Drawing.Point(118, 202);
-            this.textBox_jobSkill.Name = "textBox_jobSkill";
-            this.textBox_jobSkill.Size = new System.Drawing.Size(161, 27);
-            this.textBox_jobSkill.TabIndex = 1;
+            this.txt_jobSkill.Location = new System.Drawing.Point(118, 202);
+            this.txt_jobSkill.Name = "txt_jobSkill";
+            this.txt_jobSkill.Size = new System.Drawing.Size(161, 27);
+            this.txt_jobSkill.TabIndex = 1;
             // 
-            // textBox_exp
+            // txt_Exp
             // 
-            this.textBox_exp.Location = new System.Drawing.Point(118, 153);
-            this.textBox_exp.Name = "textBox_exp";
-            this.textBox_exp.Size = new System.Drawing.Size(161, 27);
-            this.textBox_exp.TabIndex = 1;
+            this.txt_Exp.Location = new System.Drawing.Point(118, 153);
+            this.txt_Exp.Name = "txt_Exp";
+            this.txt_Exp.Size = new System.Drawing.Size(161, 27);
+            this.txt_Exp.TabIndex = 1;
             // 
-            // textBox_jobtitle
+            // txt_jobTitle
             // 
-            this.textBox_jobtitle.Location = new System.Drawing.Point(118, 100);
-            this.textBox_jobtitle.Name = "textBox_jobtitle";
-            this.textBox_jobtitle.Size = new System.Drawing.Size(161, 27);
-            this.textBox_jobtitle.TabIndex = 1;
+            this.txt_jobTitle.Location = new System.Drawing.Point(118, 100);
+            this.txt_jobTitle.Name = "txt_jobTitle";
+            this.txt_jobTitle.Size = new System.Drawing.Size(161, 27);
+            this.txt_jobTitle.TabIndex = 1;
             // 
-            // textBox_jobname
+            // txt_jobName
             // 
-            this.textBox_jobname.Location = new System.Drawing.Point(118, 46);
-            this.textBox_jobname.Name = "textBox_jobname";
-            this.textBox_jobname.Size = new System.Drawing.Size(161, 27);
-            this.textBox_jobname.TabIndex = 1;
+            this.txt_jobName.Location = new System.Drawing.Point(118, 46);
+            this.txt_jobName.Name = "txt_jobName";
+            this.txt_jobName.Size = new System.Drawing.Size(161, 27);
+            this.txt_jobName.TabIndex = 1;
             // 
             // label_salary
             // 
@@ -202,68 +253,118 @@
             // 
             // group_seeker
             // 
+            this.group_seeker.Controls.Add(this.btn_searchJS);
+            this.group_seeker.Controls.Add(this.txt_idSeeker);
+            this.group_seeker.Controls.Add(this.btn_deletejs);
+            this.group_seeker.Controls.Add(this.btn_editjs);
             this.group_seeker.Controls.Add(this.btn_saveseeker);
-            this.group_seeker.Controls.Add(this.textBox_country);
-            this.group_seeker.Controls.Add(this.textBox_city);
-            this.group_seeker.Controls.Add(this.textBox_seekerSkill);
-            this.group_seeker.Controls.Add(this.textBox_major);
-            this.group_seeker.Controls.Add(this.textBox_email);
-            this.group_seeker.Controls.Add(this.textBox_seekername);
+            this.group_seeker.Controls.Add(this.txt_country);
+            this.group_seeker.Controls.Add(this.txt_city);
+            this.group_seeker.Controls.Add(this.txt_seekerSkill);
+            this.group_seeker.Controls.Add(this.txt_major);
+            this.group_seeker.Controls.Add(this.txt_email);
+            this.group_seeker.Controls.Add(this.txt_seekername);
             this.group_seeker.Controls.Add(this.label_country);
             this.group_seeker.Controls.Add(this.label_city);
             this.group_seeker.Controls.Add(this.label_seekerSkill);
             this.group_seeker.Controls.Add(this.label_major);
             this.group_seeker.Controls.Add(this.label_email);
             this.group_seeker.Controls.Add(this.label_seekername);
-            this.group_seeker.Location = new System.Drawing.Point(792, 78);
+            this.group_seeker.Location = new System.Drawing.Point(877, 78);
             this.group_seeker.Name = "group_seeker";
-            this.group_seeker.Size = new System.Drawing.Size(321, 403);
+            this.group_seeker.Size = new System.Drawing.Size(321, 448);
             this.group_seeker.TabIndex = 2;
             this.group_seeker.TabStop = false;
             this.group_seeker.Text = "Seeker";
             // 
-            // textBox_country
+            // btn_searchJS
             // 
-            this.textBox_country.Location = new System.Drawing.Point(120, 302);
-            this.textBox_country.Name = "textBox_country";
-            this.textBox_country.Size = new System.Drawing.Size(161, 27);
-            this.textBox_country.TabIndex = 1;
-            this.textBox_country.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
+            this.btn_searchJS.Location = new System.Drawing.Point(147, 398);
+            this.btn_searchJS.Name = "btn_searchJS";
+            this.btn_searchJS.Size = new System.Drawing.Size(139, 29);
+            this.btn_searchJS.TabIndex = 5;
+            this.btn_searchJS.Text = "Search by ID";
+            this.btn_searchJS.UseVisualStyleBackColor = true;
+            this.btn_searchJS.Click += new System.EventHandler(this.btn_searchJS_Click);
             // 
-            // textBox_city
+            // txt_idSeeker
             // 
-            this.textBox_city.Location = new System.Drawing.Point(121, 252);
-            this.textBox_city.Name = "textBox_city";
-            this.textBox_city.Size = new System.Drawing.Size(163, 27);
-            this.textBox_city.TabIndex = 1;
+            this.txt_idSeeker.Location = new System.Drawing.Point(22, 401);
+            this.txt_idSeeker.Name = "txt_idSeeker";
+            this.txt_idSeeker.Size = new System.Drawing.Size(93, 27);
+            this.txt_idSeeker.TabIndex = 1;
             // 
-            // textBox_seekerSkill
+            // btn_deletejs
             // 
-            this.textBox_seekerSkill.Location = new System.Drawing.Point(122, 204);
-            this.textBox_seekerSkill.Name = "textBox_seekerSkill";
-            this.textBox_seekerSkill.Size = new System.Drawing.Size(163, 27);
-            this.textBox_seekerSkill.TabIndex = 1;
+            this.btn_deletejs.Location = new System.Drawing.Point(211, 355);
+            this.btn_deletejs.Name = "btn_deletejs";
+            this.btn_deletejs.Size = new System.Drawing.Size(75, 30);
+            this.btn_deletejs.TabIndex = 4;
+            this.btn_deletejs.Text = "Delete";
+            this.btn_deletejs.UseVisualStyleBackColor = true;
+            this.btn_deletejs.Click += new System.EventHandler(this.btn_deletejs_Click);
             // 
-            // textBox_major
+            // btn_editjs
             // 
-            this.textBox_major.Location = new System.Drawing.Point(121, 157);
-            this.textBox_major.Name = "textBox_major";
-            this.textBox_major.Size = new System.Drawing.Size(163, 27);
-            this.textBox_major.TabIndex = 1;
+            this.btn_editjs.Location = new System.Drawing.Point(18, 356);
+            this.btn_editjs.Name = "btn_editjs";
+            this.btn_editjs.Size = new System.Drawing.Size(78, 29);
+            this.btn_editjs.TabIndex = 3;
+            this.btn_editjs.Text = "Edit";
+            this.btn_editjs.UseVisualStyleBackColor = true;
+            this.btn_editjs.Click += new System.EventHandler(this.btn_editjs_Click);
             // 
-            // textBox_email
+            // btn_saveseeker
             // 
-            this.textBox_email.Location = new System.Drawing.Point(122, 104);
-            this.textBox_email.Name = "textBox_email";
-            this.textBox_email.Size = new System.Drawing.Size(163, 27);
-            this.textBox_email.TabIndex = 1;
+            this.btn_saveseeker.Location = new System.Drawing.Point(116, 356);
+            this.btn_saveseeker.Name = "btn_saveseeker";
+            this.btn_saveseeker.Size = new System.Drawing.Size(68, 29);
+            this.btn_saveseeker.TabIndex = 2;
+            this.btn_saveseeker.Text = "Save";
+            this.btn_saveseeker.UseVisualStyleBackColor = true;
+            this.btn_saveseeker.Click += new System.EventHandler(this.btn_saveseeker_Click);
             // 
-            // textBox_seekername
+            // txt_country
             // 
-            this.textBox_seekername.Location = new System.Drawing.Point(123, 48);
-            this.textBox_seekername.Name = "textBox_seekername";
-            this.textBox_seekername.Size = new System.Drawing.Size(163, 27);
-            this.textBox_seekername.TabIndex = 1;
+            this.txt_country.Location = new System.Drawing.Point(120, 302);
+            this.txt_country.Name = "txt_country";
+            this.txt_country.Size = new System.Drawing.Size(161, 27);
+            this.txt_country.TabIndex = 1;
+            // 
+            // txt_city
+            // 
+            this.txt_city.Location = new System.Drawing.Point(121, 252);
+            this.txt_city.Name = "txt_city";
+            this.txt_city.Size = new System.Drawing.Size(163, 27);
+            this.txt_city.TabIndex = 1;
+            // 
+            // txt_seekerSkill
+            // 
+            this.txt_seekerSkill.Location = new System.Drawing.Point(122, 204);
+            this.txt_seekerSkill.Name = "txt_seekerSkill";
+            this.txt_seekerSkill.Size = new System.Drawing.Size(163, 27);
+            this.txt_seekerSkill.TabIndex = 1;
+            // 
+            // txt_major
+            // 
+            this.txt_major.Location = new System.Drawing.Point(121, 157);
+            this.txt_major.Name = "txt_major";
+            this.txt_major.Size = new System.Drawing.Size(163, 27);
+            this.txt_major.TabIndex = 1;
+            // 
+            // txt_email
+            // 
+            this.txt_email.Location = new System.Drawing.Point(122, 104);
+            this.txt_email.Name = "txt_email";
+            this.txt_email.Size = new System.Drawing.Size(163, 27);
+            this.txt_email.TabIndex = 1;
+            // 
+            // txt_seekername
+            // 
+            this.txt_seekername.Location = new System.Drawing.Point(123, 48);
+            this.txt_seekername.Name = "txt_seekername";
+            this.txt_seekername.Size = new System.Drawing.Size(163, 27);
+            this.txt_seekername.TabIndex = 1;
             // 
             // label_country
             // 
@@ -319,40 +420,42 @@
             this.label_seekername.TabIndex = 0;
             this.label_seekername.Text = " Seeker Name";
             // 
-            // btn_saveseeker
+            // btn_GetAllJO
             // 
-            this.btn_saveseeker.Location = new System.Drawing.Point(116, 356);
-            this.btn_saveseeker.Name = "btn_saveseeker";
-            this.btn_saveseeker.Size = new System.Drawing.Size(94, 29);
-            this.btn_saveseeker.TabIndex = 2;
-            this.btn_saveseeker.Text = "Save";
-            this.btn_saveseeker.UseVisualStyleBackColor = true;
+            this.btn_GetAllJO.Location = new System.Drawing.Point(280, 83);
+            this.btn_GetAllJO.Name = "btn_GetAllJO";
+            this.btn_GetAllJO.Size = new System.Drawing.Size(179, 29);
+            this.btn_GetAllJO.TabIndex = 3;
+            this.btn_GetAllJO.Text = "Get All JobOffer";
+            this.btn_GetAllJO.UseVisualStyleBackColor = true;
+            this.btn_GetAllJO.Click += new System.EventHandler(this.btn_GetAllJO_Click);
             // 
-            // btn_all
+            // txtResponse
             // 
-            this.btn_all.Location = new System.Drawing.Point(329, 78);
-            this.btn_all.Name = "btn_all";
-            this.btn_all.Size = new System.Drawing.Size(94, 29);
-            this.btn_all.TabIndex = 3;
-            this.btn_all.Text = "All";
-            this.btn_all.UseVisualStyleBackColor = true;
+            this.txtResponse.Location = new System.Drawing.Point(32, 196);
+            this.txtResponse.Multiline = true;
+            this.txtResponse.Name = "txtResponse";
+            this.txtResponse.Size = new System.Drawing.Size(477, 295);
+            this.txtResponse.TabIndex = 5;
             // 
-            // btn_search
+            // btn_GetAllJS
             // 
-            this.btn_search.Location = new System.Drawing.Point(168, 78);
-            this.btn_search.Name = "btn_search";
-            this.btn_search.Size = new System.Drawing.Size(143, 29);
-            this.btn_search.TabIndex = 4;
-            this.btn_search.Text = "Search by ID";
-            this.btn_search.UseVisualStyleBackColor = true;
+            this.btn_GetAllJS.Location = new System.Drawing.Point(280, 129);
+            this.btn_GetAllJS.Name = "btn_GetAllJS";
+            this.btn_GetAllJS.Size = new System.Drawing.Size(179, 29);
+            this.btn_GetAllJS.TabIndex = 6;
+            this.btn_GetAllJS.Text = "Get All JobSeeker";
+            this.btn_GetAllJS.UseVisualStyleBackColor = true;
+            this.btn_GetAllJS.Click += new System.EventHandler(this.btn_GetAllJS_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1262, 504);
-            this.Controls.Add(this.btn_search);
-            this.Controls.Add(this.btn_all);
+            this.ClientSize = new System.Drawing.Size(1232, 547);
+            this.Controls.Add(this.btn_GetAllJS);
+            this.Controls.Add(this.txtResponse);
+            this.Controls.Add(this.btn_GetAllJO);
             this.Controls.Add(this.group_seeker);
             this.Controls.Add(this.group_joboffer);
             this.Controls.Add(this.label_title);
@@ -375,9 +478,9 @@
         private System.Windows.Forms.TextBox textBox_salary;
         private System.Windows.Forms.TextBox textBox_address;
         private System.Windows.Forms.TextBox textBox_jobSkill;
-        private System.Windows.Forms.TextBox textBox_exp;
-        private System.Windows.Forms.TextBox textBox_jobtitle;
-        private System.Windows.Forms.TextBox textBox_jobname;
+        private System.Windows.Forms.TextBox txt_Exp;
+        private System.Windows.Forms.TextBox txt_jobTitle;
+        private System.Windows.Forms.TextBox txt_jobName;
         private System.Windows.Forms.Label label_salary;
         private System.Windows.Forms.Label label_address;
         private System.Windows.Forms.Label label_jobSkill;
@@ -385,12 +488,12 @@
         private System.Windows.Forms.Label label_jobtitle;
         private System.Windows.Forms.Label label_jobname;
         private System.Windows.Forms.GroupBox group_seeker;
-        private System.Windows.Forms.TextBox textBox_country;
-        private System.Windows.Forms.TextBox textBox_city;
-        private System.Windows.Forms.TextBox textBox_seekerSkill;
-        private System.Windows.Forms.TextBox textBox_major;
-        private System.Windows.Forms.TextBox textBox_email;
-        private System.Windows.Forms.TextBox textBox_seekername;
+        private System.Windows.Forms.TextBox txt_country;
+        private System.Windows.Forms.TextBox txt_city;
+        private System.Windows.Forms.TextBox txt_seekerSkill;
+        private System.Windows.Forms.TextBox txt_major;
+        private System.Windows.Forms.TextBox txt_email;
+        private System.Windows.Forms.TextBox txt_seekername;
         private System.Windows.Forms.Label label_country;
         private System.Windows.Forms.Label label_city;
         private System.Windows.Forms.Label label_seekerSkill;
@@ -398,8 +501,22 @@
         private System.Windows.Forms.Label label_email;
         private System.Windows.Forms.Label label_seekername;
         private System.Windows.Forms.Button btn_saveseeker;
-        private System.Windows.Forms.Button btn_all;
+        private System.Windows.Forms.Button btn_GetAllJO;
         private System.Windows.Forms.Button btn_search;
+        private System.Windows.Forms.TextBox txtResponse;
+        private System.Windows.Forms.Button btn_GetAllJS;
+        private System.Windows.Forms.TextBox txt_jobSkill;
+        private System.Windows.Forms.TextBox txt_address;
+        private System.Windows.Forms.TextBox txt_salary;
+        private System.Windows.Forms.TextBox txt_id;
+        private System.Windows.Forms.Button btn_edit;
+        private System.Windows.Forms.Button btn_delete;
+        private System.Windows.Forms.Button btn_deletejs;
+        private System.Windows.Forms.Button btn_editjs;
+        private System.Windows.Forms.TextBox txt_idOffer;
+        private System.Windows.Forms.Button btn_searchOffer;
+        private System.Windows.Forms.TextBox txt_idSeeker;
+        private System.Windows.Forms.Button btn_searchJS;
     }
 }
 
