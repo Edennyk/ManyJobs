@@ -1,11 +1,11 @@
 # ManyJobs Web API
 COMP306 Group05 Project
 
-##Introduction 
+Introduction 
 ========================================================
 College group project for creating web api 
 
-##Used Technologies 
+Used Technologies 
 ========================================================
 Visual Studio 2017 
 ASP.NET Core Web API (3.1) 
@@ -15,7 +15,7 @@ Amazon Web Services
 Swagger 
 Apigee 
 
-##Implementation 
+Implementation 
 =========================================================
 Created database in AWS Relational Database Service (RDS) 
 Web API implementation using ASP.NET Core Web API 
