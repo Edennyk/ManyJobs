@@ -7,10 +7,10 @@ College group project for creating web api
 
 Used Technologies 
 ========================================================
-Visual Studio 2017 
-ASP.NET Core Web API (3.1) 
-Microsoft SQL Server  
-Postman 
+*Visual Studio 2017 
+*ASP.NET Core Web API (3.1) 
+*Microsoft SQL Server  
+*Postman 
 Amazon Web Services 
 Swagger 
 Apigee 
